@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Incident Report System</title>
+    <style>
+        body {
+            font-family: Algerian, sans-serif;
+            background: #0093af; /* Gradient of blue shades */
+            color: #000000;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #43b3ae; /* Light blue background for the form */
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+        }
+        button {
+            background-color: #0000cd;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #155f8b;
+        }
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            color: #4caf50;
+        }
+        .other-type {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Office Incident Report</h1>
+    
+    <div class="container">
+        <form action="https://formspree.io/f/mpwzdbkk" method="POST" id="incidentForm">
+            <!-- Incident Type -->
+            <label for="incidentType">Type of Incident</label>
+            <select id="incidentType" name="incidentType" required>
+                <option value="">Select Incident Type</option>
+                <option value="Injury">Injury</option>
+                <option value="Property Damage">Property Damage</option>
+                <option value="Harassment">Harassment</option>
+                <option value="Security Issue">Security Issue</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <!-- Other Incident Type -->
+            <div id="otherTypeDiv" class="other-type">
+                <label for="otherTypeDetails">Please specify the incident type</label>
+                <input type="text" id="otherTypeDetails" name="otherTypeDetails" placeholder="Enter other incident type" />
+            </div>
+
+            <!-- Incident Date -->
+            <label for="incidentDate">Date of Incident</label>
+            <input type="date" id="incidentDate" name="incidentDate" required>
+
+            <!-- Employee Name -->
+            <label for="employeeName">Your Name</label>
+            <input type="text" id="employeeName" name="employeeName" placeholder="Enter your name" required>
+
+            <!-- Incident Description -->
+            <label for="incidentDetails">Incident Description</label>
+            <textarea id="incidentDetails" name="incidentDetails" rows="5" placeholder="Describe what happened..." required></textarea>
+
+            <!-- Individuals Involved -->
+            <label for="individualsInvolved">Individuals Involved</label>
+            <input type="text" id="individualsInvolved" name="individualsInvolved" placeholder="List individuals involved" required>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit Report</button>
+        </form>
+
+        <div class="message" id="successMessage" style="display:none;">
+            <p>Incident report submitted successfully. Thank you for reporting.</p>
+        </div>
+    </div>
+
+    <script>
+        // Show the "Other" type details input when "Other" is selected
+        document.getElementById('incidentType').addEventListener('change', function() {
+            const otherTypeDiv = document.getElementById('otherTypeDiv');
+            if (this.value === 'Other') {
+                otherTypeDiv.style.display = 'block';
+            } else {
+                otherTypeDiv.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
